@@ -1,6 +1,9 @@
 package sk.kosickaakademia.illiaspivak.projekteshop.cart;
 
 import sk.kosickaakademia.illiaspivak.projekteshop.Item;
+import sk.kosickaakademia.illiaspivak.projekteshop.countable.CountItem;
+import sk.kosickaakademia.illiaspivak.projekteshop.servise.ServiceInterface;
+import sk.kosickaakademia.illiaspivak.projekteshop.uncountable.WeightItem;
 import sk.kosickaakademia.illiaspivak.projekteshop.util.Util;
 
 import java.util.ArrayList;
@@ -13,7 +16,17 @@ public class Cart {
         list = new ArrayList<>();
     }
     public void addItem(Item newItem){
-        list.add(newItem);
+        if(newItem.getPrice()>0) {
+            if(newItem instanceof CountItem && ((CountItem) newItem).getCount()>0) {
+                list.add(newItem);
+            }
+            if(newItem instanceof WeightItem &&((WeightItem) newItem).getWeight()>0){
+                list.add(newItem);
+            }
+            if(newItem instanceof ServiceInterface){
+                list.add(newItem);
+            }
+        }
     }
     public int getCountOfItemsInCart(){
         return list.size();
