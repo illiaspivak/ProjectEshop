@@ -15,6 +15,9 @@ public class Cart {
     public Cart() {
         list = new ArrayList<>();
     }
+    public List<Item> getList() {
+        return list;
+    }
     public void addItem(Item newItem){
         if(newItem.getPrice()>0) {
             if(newItem instanceof CountItem && ((CountItem) newItem).getCount()>0) {
@@ -38,6 +41,10 @@ public class Cart {
         }
         return Util.formatPrice(total);
     }
+    public int getCount() {
+        return list.size();
+    }
+
     public void printCart(){
         System.out.println("List of items in your cart:");
         for(Item temp : list){

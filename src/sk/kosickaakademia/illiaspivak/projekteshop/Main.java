@@ -1,14 +1,16 @@
 package sk.kosickaakademia.illiaspivak.projekteshop;
 
+
 import sk.kosickaakademia.illiaspivak.projekteshop.cart.Cart;
 import sk.kosickaakademia.illiaspivak.projekteshop.countable.Water;
 import sk.kosickaakademia.illiaspivak.projekteshop.coupon.Coupon;
 import sk.kosickaakademia.illiaspivak.projekteshop.coupon.Reader;
+import sk.kosickaakademia.illiaspivak.projekteshop.print.XmlPrint;
 import sk.kosickaakademia.illiaspivak.projekteshop.servise.Delivery;
 import sk.kosickaakademia.illiaspivak.projekteshop.uncountable.Apple;
 import sk.kosickaakademia.illiaspivak.projekteshop.util.Util;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +33,7 @@ public class Main {
         double totalPrice = cart.getTotalPrice();
 
         cart.printCart();
-        System.out.println("Do you have any coupon (y/n) ?");
+        /*System.out.println("Do you have any coupon (y/n) ?");
         Scanner scanner = new Scanner(System.in);
         String coupon;
         String input = scanner.nextLine().toLowerCase();
@@ -49,8 +51,12 @@ public class Main {
                 }
             }
             Reader.updateCoupons(list);
-        }
+        }*/
+
         System.out.println("\nTotal price : " + totalPrice);
         System.out.println("( Information price in SKK: " + Util.convertEurToSkk(cart.getTotalPrice()) + " )");
+        XmlPrint.buildReceiptDoc(cart);
+
+
     }
 }
